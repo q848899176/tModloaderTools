@@ -1,0 +1,15 @@
+{
+  "installDir": "D:\\Steam\\steamapps\\common\\tModLoader",
+  "saveDir": "C:\\Users\\YOUR_USERNAME\\Documents\\Terraria\\tModLoader",
+  "workshopDir": "D:\\Steam\\steamapps\\workshop\\content\\1281930",
+  "webPort": 3000,
+  "serverName": "我的泰拉世界",
+  "port": 7777,
+  "maxPlayers": 8,
+  "password": "",
+  "motd": "欢迎来到我们的泰拉世界！",
+  "world": "",
+  "difficulty": 1,
+  "worldSize": 1,
+  "seed": ""
+}

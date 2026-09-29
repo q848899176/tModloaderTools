@@ -1,0 +1,22 @@
+import {mkdir,writeFile,stat} from 'node:fs/promises';
+import path from 'node:path';
+import {once} from 'node:events';
+import {defaults,ROOT,beijing} from '../server/config.ts';
+import {ManagedServer} from '../server/process.ts';
+const root=path.join(ROOT,'.tools','acceptance-save');
+await mkdir(path.join(root,'Mods'),{recursive:true});
+await writeFile(path.join(root,'Mods','enabled.json'),'[]');
+const server=new ManagedServer((message,level)=>console.log(`${beijing()} [${level||'info'}] ${message}`));
+const name='工具验收世界20260929';
+let create=true;try{await stat(path.join(root,'Worlds',name+'.wld'));create=false;}catch{}
+await server.start({...defaults,saveDir:root,world:name,port:17777},create);
+const deadline=Date.now()+600000;
+while(server.status.state==='starting'&&Date.now()<deadline)await new Promise(r=>setTimeout(r,1000));
+if(server.status.state!=='running')throw new Error('世界未就绪：'+JSON.stringify(server.status));
+console.log('ACCEPTANCE: READY');
+server.save();await new Promise(r=>setTimeout(r,5000));
+const closed=once(server.child!,'close');server.stop();await closed;
+if(server.status.state!=='stopped')throw new Error('保存关服未成功');
+const world=await stat(path.join(root,'Worlds',name+'.wld'));
+if(world.size<10000)throw new Error('世界文件无效');
+console.log(`ACCEPTANCE: PASS · ${world.size} bytes · ${beijing()}`);

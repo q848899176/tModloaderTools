@@ -1,0 +1,15 @@
+{
+  "name": "tmodloader-tools",
+  "private": true,
+  "version": "1.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "server": "tsx server/index.ts",
+    "build": "vue-tsc --noEmit && vite build",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "start": "tsx server/index.ts"
+  },
+  "dependencies": { "express": "^5.1.0", "vue": "^3.5.0", "lucide-vue-next": "^0.468.0" },
+  "devDependencies": { "@types/express": "^5.0.0", "@types/node": "^24.0.0", "@vitejs/plugin-vue": "^6.0.0", "typescript": "~5.9.3", "vite": "^7.1.0", "vue-tsc": "^3.1.0", "tsx": "^4.20.0" }
+}

@@ -1,0 +1,6 @@
+displayName = Terra Web Bridge
+author = Terra Web
+version = 0.1.1
+side = Server
+includeSource = true
+buildIgnore = README.md
